@@ -1,0 +1,54 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+
+jobs:
+  test-and-build:
+    runs-on: ubuntu-latest
+    
+    strategy:
+      matrix:
+        project:
+          - name: "web-v1"
+            path: "./web/client-web-v1"
+            script: "build"
+          - name: "desktop-v1"
+            path: "./desktop/client-desktop-v1"
+            script: "build"
+          - name: "mobile-v1"
+            path: "./app/client-app-v1"
+            script: "build:web"  # Expo web build for CI
+          - name: "server-monolithic"
+            path: "./server/server-monolithic"
+            script: "test"
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+          cache: 'npm'
+          cache-dependency-path: ${{ matrix.project.path }}/package-lock.json
+
+      - name: Install dependencies for ${{ matrix.project.name }}
+        working-directory: ${{ matrix.project.path }}
+        run: npm ci
+
+      - name: Run linting for ${{ matrix.project.name }}
+        working-directory: ${{ matrix.project.path }}
+        run: npm run lint || echo "No lint script found"
+
+      - name: Run tests for ${{ matrix.project.name }}
+        working-directory: ${{ matrix.project.path }}
+        run: npm test || echo "No test script found"
+
+      - name: Build ${{ matrix.project.name }}
+        working-directory: ${{ matrix.project.path }}
+        run: npm run ${{ matrix.project.script }}

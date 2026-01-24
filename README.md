@@ -22,7 +22,7 @@ Built with the **MERN stack**, it provides a scalable backend API and a responsi
 
 ### Frontend
 - React.js
-- JavaScript (ES6+)
+- Typescript (ES6+)
 - HTML5, CSS3
 
 ### Backend

@@ -6,6 +6,20 @@ Built with the **MERN stack**, it provides a scalable backend API and a responsi
 
 ---
 
+## 🔗 Live Prototype
+
+🚀 **Live Demo:**  
+👉 https://bookqubit.netlify.app/
+
+> This is a prototype version showcasing the frontend experience and core workflows.
+
+---
+
+
+
+
+
+
 ## 🚀 Features
 
 - 📖 Discover and browse books

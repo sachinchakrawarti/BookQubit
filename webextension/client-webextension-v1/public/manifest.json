@@ -1,0 +1,27 @@
+{
+  "manifest_version": 3,
+  "name": "BookQubit",
+  "version": "1.0.0",
+  "description": "Simple BookQubit Extension MVP",
+  
+  "action": {
+    "default_popup": "index.html",
+    "default_icon": {
+      "16": "public/icons/bookqubitlogo.ico",
+      "48": "public/icons/bookqubitlogo.ico",
+      "128": "public/icons/bookqubitlogo.ico"
+    }
+  },
+
+  "background": {
+    "service_worker": "src/background/index.ts"
+  },
+
+  "permissions": ["tabs"],
+
+  "icons": {
+    "16": "public/icons/bookqubitlogo.ico",
+    "48": "public/icons/bookqubitlogo.ico",
+    "128": "public/icons/bookqubitlogo.ico"
+  }
+}

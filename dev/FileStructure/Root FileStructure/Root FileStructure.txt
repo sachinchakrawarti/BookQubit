@@ -1,6 +1,13 @@
 d:/Projects/chakrawarti-empire/bookqubit/
 ├─] .env (ignored)
+├── .eslintrc.js
 ├── .github/
+│   └── workflows/
+│       ├── ci-cd.yml
+│       ├── deploy.yml
+│       ├── env-setup.yml
+│       ├── release.yml
+│       └── security.yml
 ├── .gitignore
 ├── .prettierrc
 ├── app/
@@ -15,9 +22,11 @@ d:/Projects/chakrawarti-empire/bookqubit/
 │   │   │   ├── (tabs)/
 │   │   │   │   ├── index.tsx
 │   │   │   │   └── _layout.tsx
+│   │   │   ├── AppNavigator.jsx
 │   │   │   ├── books.tsx
 │   │   │   ├── index.tsx
 │   │   │   ├── library.tsx
+│   │   │   ├── RootLayout.jsx
 │   │   │   └── _layout.tsx
 │   │   ├── app.json
 │   │   ├── eslint.config.js
@@ -40,12 +49,19 @@ d:/Projects/chakrawarti-empire/bookqubit/
 │   │   │   │       ├── react-logo@2x.png
 │   │   │   │       ├── react-logo@3x.png
 │   │   │   │       └── splash-icon.png
-│   │   │   └── components/
-│   │   │       ├── ccc/
-│   │   │       └── navbar/
-│   │   │           └── Navbar.tsx
+│   │   │   ├── components/
+│   │   │   │   ├── ccc/
+│   │   │   │   └── navbar/
+│   │   │   │       └── Navbar.tsx
+│   │   │   ├── layout/
+│   │   │   │   ├── bottomnavigationbar/
+│   │   │   │   └── navbar/
+│   │   │   └── screens/
+│   │   │       ├── books/
+│   │   │       └── home/
 │   │   └── tsconfig.json
 │   └── client-app-v2/
+│       └── index.html
 ├── database/
 │   └── books.db
 ├── desktop/
@@ -93,10 +109,19 @@ d:/Projects/chakrawarti-empire/bookqubit/
 │   │   ├── tsconfig.node.json
 │   │   └── vite.config.ts
 │   └── client-desktop-v2/
+│       └── html.html
 ├── dev/
+│   ├── dependencies/
+│   │   └── dependencies.md
+│   └── FileStructure/
+│       ├── client-web-v1 FileStructure/
+│       └── Root FileStructure/
+├── docker/
 ├── docs/
-│   ├── FileStructure.txt
-│   └── libs.txt
+│   ├── libs.txt
+│   └── PPT/
+│       └── BookQubit_Presentation.pptx
+├── jest.config.js
 ├── README.md
 ├── server/
 │   ├── server-microservices/
@@ -2953,6 +2978,7 @@ d:/Projects/chakrawarti-empire/bookqubit/
 │           └── main.js
 └── web/
     ├── client-web-v1/
+    │   ├── .env
     │   ├── .gitignore
     │   ├── eslint.config.js
     │   ├── index.html
@@ -2964,36 +2990,37 @@ d:/Projects/chakrawarti-empire/bookqubit/
     │   ├── README.md
     │   ├── src/
     │   │   ├── App.css
-    │   │   ├── App.jsx
+    │   │   ├── App.tsx
     │   │   ├── assets/
     │   │   │   └── react.svg
+    │   │   ├── components/
     │   │   ├── config/
-    │   │   │   └── theme.js
-    │   │   ├── data/
-    │   │   │   ├── BooksData.js
-    │   │   │   └── QubitBookData.js
+    │   │   │   └── theme.ts
     │   │   ├── index.css
     │   │   ├── layout/
     │   │   │   ├── footer/
-    │   │   │   │   └── Footer.jsx
+    │   │   │   │   ├── components/
+    │   │   │   │   │   ├── CopyrightFooter.tsx
+    │   │   │   │   │   ├── DownloadFooter.tsx
+    │   │   │   │   │   ├── ExplorePage.tsx
+    │   │   │   │   │   ├── FooterMain.tsx
+    │   │   │   │   │   ├── LegalFooter.tsx
+    │   │   │   │   │   ├── NewsletterFooter.tsx
+    │   │   │   │   │   └── SocialFooter.tsx
+    │   │   │   │   ├── Footer.css
+    │   │   │   │   └── Footer.tsx
     │   │   │   └── navbar/
     │   │   │       ├── Navbar.css
-    │   │   │       ├── Navbar.jsx
-    │   │   │       └── NavItem.js
-    │   │   ├── main.jsx
+    │   │   │       ├── Navbar.tsx
+    │   │   │       └── NavItems.ts
+    │   │   ├── main.tsx
     │   │   ├── pages/
-    │   │   │   ├── Books/
-    │   │   │   │   ├── BookDetails.jsx
-    │   │   │   │   ├── Books.jsx
-    │   │   │   │   └── components/
-    │   │   │   │       ├── BookRectangleCard.jsx
-    │   │   │   │       ├── BookSquareCard.jsx
-    │   │   │   │       └── Button.jsx
-    │   │   │   └── homepage/
-    │   │   │       ├── components/
-    │   │   │       │   └── HeroSection.jsx
-    │   │   │       └── HomePage.jsx
+    │   │   │   ├── homepages/
+    │   │   │   └── navpages/
     │   │   └── routes/
-    │   │       └── AppRoutes.jsx
-    │   └── vite.config.js
+    │   │       └── AppRoutes.tsx
+    │   ├── tsconfig.app.json
+    │   ├── tsconfig.json
+    │   ├── tsconfig.node.json
+    │   └── vite.config.ts
     └── client-web-v2/

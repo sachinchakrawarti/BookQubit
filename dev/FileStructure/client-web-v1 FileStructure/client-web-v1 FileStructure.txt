@@ -1,0 +1,46 @@
+d:/Projects/chakrawarti-empire/bookqubit/web/client-web-v1/
+├── .env
+├── .gitignore
+├── eslint.config.js
+├── index.html
+├─] node_modules/ (ignored)
+├── package-lock.json
+├── package.json
+├── public/
+│   └── vite.svg
+├── README.md
+├── src/
+│   ├── App.css
+│   ├── App.tsx
+│   ├── assets/
+│   │   └── react.svg
+│   ├── components/
+│   ├── config/
+│   │   └── theme.ts
+│   ├── index.css
+│   ├── layout/
+│   │   ├── footer/
+│   │   │   ├── components/
+│   │   │   │   ├── CopyrightFooter.tsx
+│   │   │   │   ├── DownloadFooter.tsx
+│   │   │   │   ├── ExplorePage.tsx
+│   │   │   │   ├── FooterMain.tsx
+│   │   │   │   ├── LegalFooter.tsx
+│   │   │   │   ├── NewsletterFooter.tsx
+│   │   │   │   └── SocialFooter.tsx
+│   │   │   ├── Footer.css
+│   │   │   └── Footer.tsx
+│   │   └── navbar/
+│   │       ├── Navbar.css
+│   │       ├── Navbar.tsx
+│   │       └── NavItems.ts
+│   ├── main.tsx
+│   ├── pages/
+│   │   ├── homepages/
+│   │   └── navpages/
+│   └── routes/
+│       └── AppRoutes.tsx
+├── tsconfig.app.json
+├── tsconfig.json
+├── tsconfig.node.json
+└── vite.config.ts

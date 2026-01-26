@@ -1,0 +1,10 @@
+{
+  "manifest_version": 3,
+  "name": "BookQubit",
+  "version": "1.0.0",
+  "description": "Hello BookQubit extension",
+
+  "action": {
+    "default_popup": "index.html"
+  }
+}

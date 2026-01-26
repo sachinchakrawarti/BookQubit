@@ -30,6 +30,6 @@ app.get("/health", (_req, res) => {
 app.use("/api/v1", centralV1Api);
 
 // API v2 (central router)
-app.use("/api/v2", centralV1Api);
+app.use("/api/v2", centralV2Api);
 
 export default app;

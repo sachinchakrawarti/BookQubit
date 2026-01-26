@@ -10,11 +10,32 @@
         margin: 0;
         height: 100vh;
         display: flex;
+        flex-direction: column;
         align-items: center;
         justify-content: center;
         font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
         background: linear-gradient(135deg, #0ea5e9, #1e293b);
         color: #ffffff;
+      }
+
+      .health-buttons {
+        margin-bottom: 1rem;
+      }
+
+      button {
+        margin: 0.5rem;
+        padding: 0.5rem 1rem;
+        border-radius: 8px;
+        border: none;
+        cursor: pointer;
+        font-size: 1rem;
+        transition: 0.2s;
+        background-color: #22c55e;
+        color: #fff;
+      }
+
+      button:hover {
+        background-color: #16a34a;
       }
 
       .card {
@@ -35,64 +56,70 @@
         opacity: 0.9;
       }
 
-      button {
-        margin: 0.5rem;
-        padding: 0.5rem 1rem;
-        border-radius: 8px;
-        border: none;
-        cursor: pointer;
-        font-size: 1rem;
-        transition: 0.2s;
-        background-color: #22c55e;
-        color: #fff;
-      }
-
-      button:hover {
-        background-color: #16a34a;
-      }
-
-      .result {
-        margin-top: 1rem;
-        font-family: monospace;
-        text-align: left;
-        background: rgba(255, 255, 255, 0.1);
-        padding: 1rem;
-        border-radius: 12px;
-        max-width: 400px;
-        overflow-wrap: break-word;
+      small {
+        display: block;
+        margin-top: 1.5rem;
+        opacity: 0.7;
       }
     </style>
   </head>
 
   <body>
+    <!-- Health buttons above the main card -->
+    <div class="health-buttons">
+      <button onclick="openHealthPage('v1')">v1 Health</button>
+      <button onclick="openHealthPage('v2')">v2 Health</button>
+    </div>
+
+    <!-- Main card -->
     <div class="card">
       <h1>📚 BookQubit Server</h1>
       <p>Server is running successfully 🚀</p>
-
-      <!-- Buttons -->
-      <div>
-        <button onclick="checkHealth('v1')">Check v1 Health</button>
-        <button onclick="checkHealth('v2')">Check v2 Health</button>
-      </div>
-
-      <!-- Result display -->
-      <div id="result" class="result">Click a button to check health.</div>
-
       <small>Chakrawarti Empire</small>
     </div>
 
     <script>
-      async function checkHealth(version) {
-        const resultDiv = document.getElementById("result");
+      function openHealthPage(version) {
         const url = `/api/${version}/health`;
 
-        try {
-          const res = await fetch(url);
-          const data = await res.json();
-          resultDiv.textContent = JSON.stringify(data, null, 2);
-        } catch (err) {
-          resultDiv.textContent = `Error: ${err.message}`;
-        }
+        // Open new window and write JSON pretty
+        fetch(url)
+          .then(res => res.json())
+          .then(data => {
+            const newWindow = window.open("", "_blank");
+            newWindow.document.write(`
+              <!DOCTYPE html>
+              <html>
+              <head>
+                <title>${version.toUpperCase()} Health</title>
+                <meta charset="UTF-8">
+                <style>
+                  body {
+                    font-family: monospace;
+                    padding: 2rem;
+                    background: #0f172a;
+                    color: #f8fafc;
+                  }
+                  pre {
+                    background: #1e293b;
+                    padding: 1rem;
+                    border-radius: 8px;
+                    overflow-x: auto;
+                  }
+                  h1 { margin-bottom: 1rem; }
+                </style>
+              </head>
+              <body>
+                <h1>${version.toUpperCase()} Health</h1>
+                <pre>${JSON.stringify(data, null, 2)}</pre>
+              </body>
+              </html>
+            `);
+            newWindow.document.close();
+          })
+          .catch(err => {
+            alert("Error fetching health: " + err);
+          });
       }
     </script>
   </body>

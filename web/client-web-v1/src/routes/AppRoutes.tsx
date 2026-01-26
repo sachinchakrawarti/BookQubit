@@ -1,20 +1,27 @@
-// React Router components for defining app routes
 import { Routes, Route } from "react-router-dom";
 
-// If you later import pages from a central GlobalImports file,
-// you can add them here (kept empty for now)
+import PublicLayout from "../Outlet/PublicLayout";
+import DashboardLayout from "../Outlet/DashboardLayout";
 
-// Type-safe functional component for app routing
-const AppRoutes: React.FC = () => {
+import Homepages from "../pages/homepages/Homepages";
+import Dashborad from "../dashbord/dashboard_hub/Dashboard_Hub";
+import AdminDashboard from "../dashbord/admin_dashbord/admin_dashbord";
+import SuperAdminDashboard from "../dashbord/super_admin_dashbord/super_admin_dashbord";
+
+const AppRoutes = () => {
   return (
-    // Routes acts as a container for all Route definitions
     <Routes>
-      {/*
-        Define your routes here, for example:
+      {/* Public */}
+      <Route element={<PublicLayout />}>
+        <Route path="/" element={<Homepages />} />
+      </Route>
 
-        <Route path="/" element={<Home />} />
-        <Route path="/books" element={<Books />} />
-      */}
+      {/* Dashboards */}
+      <Route element={<DashboardLayout />}>
+        <Route path="/dashboard" element={<Dashborad />} />
+        <Route path="/admin" element={<AdminDashboard />} />
+        <Route path="/super-admin" element={<SuperAdminDashboard />} />
+      </Route>
     </Routes>
   );
 };

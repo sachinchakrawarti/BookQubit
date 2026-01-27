@@ -1,8 +1,15 @@
-import React from "react";
-import HeroSection from "./components/HeroSection";
+import React from 'react'
+import HeroSection from './components/HeroSection'
+import HeroPartOne from "./components/hero_1";
 
-const HomePages: React.FC = () => {
-  return <HeroSection />;
-};
 
-export default HomePages;
+export default function Homepages() {
+  return (
+    <>
+      
+  <HeroSection />
+  <HeroPartOne />
+    
+    </>
+  )
+}

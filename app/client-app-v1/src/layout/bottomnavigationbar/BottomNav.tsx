@@ -1,10 +1,10 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { Ionicons } from "@expo/vector-icons";
+import { Ionicons, FontAwesome5 } from "@expo/vector-icons";
 import { theme } from "@/src/constants/theme";
 
 import HomeScreen from "@/src/screens/HomeScreen";
 import BooksScreen from "@/src/screens/BooksScreen";
-import LibraryScreen from "@/src/screens/LibraryScreen";
+import ProfileScreen from "@/src/screens/ProfileScreen";
 
 const Tab = createBottomTabNavigator();
 
@@ -13,11 +13,24 @@ export default function BottomNav() {
     <Tab.Navigator
       screenOptions={{
         headerShown: false,
-        tabBarActiveTintColor: theme.colors.primary,
-        tabBarInactiveTintColor: theme.colors.mutedText,
+        tabBarActiveTintColor: "#0ea5e9", // BookQubit sky blue
+        tabBarInactiveTintColor: "#94a3b8", // Gray for inactive
         tabBarStyle: {
-          borderTopColor: theme.colors.border,
-          backgroundColor: theme.colors.background,
+          borderTopColor: "#e2e8f0",
+          backgroundColor: "#ffffff",
+          height: 60,
+          paddingBottom: 8,
+          paddingTop: 8,
+          elevation: 8,
+          shadowColor: "#000",
+          shadowOffset: { width: 0, height: -2 },
+          shadowOpacity: 0.05,
+          shadowRadius: 4,
+        },
+        tabBarLabelStyle: {
+          fontSize: 12,
+          fontWeight: '500',
+          marginTop: 2,
         },
       }}
     >
@@ -25,9 +38,14 @@ export default function BottomNav() {
         name="Home"
         component={HomeScreen}
         options={{
-          tabBarIcon: ({ color, size }) => (
-            <Ionicons name="home" size={size} color={color} />
+          tabBarIcon: ({ color, size, focused }) => (
+            <Ionicons 
+              name={focused ? "home" : "home-outline"} 
+              size={size} 
+              color={color} 
+            />
           ),
+          tabBarLabel: "Home",
         }}
       />
 
@@ -35,19 +53,29 @@ export default function BottomNav() {
         name="Books"
         component={BooksScreen}
         options={{
-          tabBarIcon: ({ color, size }) => (
-            <Ionicons name="book" size={size} color={color} />
+          tabBarIcon: ({ color, size, focused }) => (
+            <FontAwesome5 
+              name={focused ? "book-open" : "book"} 
+              size={size - 2} 
+              color={color} 
+            />
           ),
+          tabBarLabel: "Books",
         }}
       />
 
       <Tab.Screen
-        name="Library"
-        component={LibraryScreen}
+        name="Profile"
+        component={ProfileScreen}
         options={{
-          tabBarIcon: ({ color, size }) => (
-            <Ionicons name="library" size={size} color={color} />
+          tabBarIcon: ({ color, size, focused }) => (
+            <Ionicons 
+              name={focused ? "person-circle" : "person-circle-outline"} 
+              size={size + 4} 
+              color={color} 
+            />
           ),
+          tabBarLabel: "Profile",
         }}
       />
     </Tab.Navigator>

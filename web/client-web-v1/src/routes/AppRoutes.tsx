@@ -6,7 +6,7 @@ import PublicLayout from "../Outlet/PublicLayout";
 import DashboardLayout from "../Outlet/DashboardLayout";
 
 // Public / Client pages
-import Home from "../pages/homepages/Homepages";
+import Home from "../pages/homepages/homepages";
 
 // Client dashboards (public navbar)
 import UserDashboard from "../dashbord/client_dashboard_hub/user_dashboard/user_dashboard";
@@ -23,6 +23,9 @@ import AdsDashboard from "../dashbord/admin_dashboard_hub/ads_dashboard/AdsDashb
 import Books from "../pages/navpages/books/Books";
 import BookDetails from "../pages/navpages/books/BookDetails";
 
+import Comics from "../pages/navpages/comics/Comics";
+import ComicsDetails from "../pages/navpages/comics/ComicsDetails";
+
 const AppRoutes: React.FC = () => {
   return (
     <Routes>
@@ -34,7 +37,10 @@ const AppRoutes: React.FC = () => {
         <Route path="/user/dashboard" element={<UserDashboard />} />
         <Route path="/author/dashboard" element={<AuthorDashboard />} />
         <Route path="/books" element={<Books />} />
-          <Route path="/books/:id" element={<BookDetails />} />
+        <Route path="/books/:id" element={<BookDetails />} />
+         <Route path="/comics" element={<Comics />} />
+        <Route path="/comics/:id" element={<ComicsDetails />} />
+     
       </Route>
 
       {/* =================== */}

@@ -26,6 +26,9 @@ import BookDetails from "../pages/navpages/books/BookDetails";
 import Comics from "../pages/navpages/comics/Comics";
 import ComicsDetails from "../pages/navpages/comics/ComicsDetails";
 
+import Authors from "../pages/navpages/authors/authors";
+import AuthorDetails from "../pages/navpages/authors/authors_details";
+
 const AppRoutes: React.FC = () => {
   return (
     <Routes>
@@ -40,6 +43,8 @@ const AppRoutes: React.FC = () => {
         <Route path="/books/:id" element={<BookDetails />} />
          <Route path="/comics" element={<Comics />} />
         <Route path="/comics/:id" element={<ComicsDetails />} />
+           <Route path="/authors" element={<Authors />} />
+        <Route path="/authors/:slug" element={<AuthorDetails />} />
      
       </Route>
 

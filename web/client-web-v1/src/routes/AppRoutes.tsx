@@ -20,6 +20,9 @@ import DashboardHub from "../dashbord/admin_dashboard_hub/dashboard_hub_admin/Da
 import AnalyticsDashboard from "../dashbord/admin_dashboard_hub/analytics_dashboard/AnalyticsDashboard";
 import AdsDashboard from "../dashbord/admin_dashboard_hub/ads_dashboard/AdsDashboard";
 
+import Books from "../pages/navpages/books/Books";
+import BookDetails from "../pages/navpages/books/BookDetails";
+
 const AppRoutes: React.FC = () => {
   return (
     <Routes>
@@ -30,6 +33,8 @@ const AppRoutes: React.FC = () => {
         <Route path="/" element={<Home />} />
         <Route path="/user/dashboard" element={<UserDashboard />} />
         <Route path="/author/dashboard" element={<AuthorDashboard />} />
+        <Route path="/books" element={<Books />} />
+          <Route path="/books/:id" element={<BookDetails />} />
       </Route>
 
       {/* =================== */}

@@ -1,94 +1,50 @@
-import {
-  View,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  ScrollView,
-} from "react-native";
-import { DrawerContentComponentProps } from "@react-navigation/drawer";
+import React from "react";
+import { View, Text, TouchableOpacity, StyleSheet, Platform } from "react-native";
+import { useRouter, DrawerActions, useDrawerStatus } from "expo-router";
 import { theme } from "@/src/constants/theme";
 
-const NAV_ITEMS = [
-  "Home",
-  "Books",
-  "Comics",
-  "Collections",
-  "Category",
-  "Genre",
-  "Authors",
-  "Publications",
-  "AI Tools",
-  "About",
-];
+export default function Navbar({ title }: { title: string }) {
+  const router = useRouter();
+  const drawerStatus = useDrawerStatus(); // "open", "closed", or undefined on web
 
-export default function DrawerMenu({
-  navigation,
-}: DrawerContentComponentProps) {
+  const toggleDrawer = () => {
+    if (Platform.OS !== "web") {
+      // only dispatch drawer on mobile
+      router.dispatch(DrawerActions.toggleDrawer());
+    } else {
+      console.log("Drawer toggle clicked on web (not supported automatically)");
+      // You can implement a web sidebar toggle here if needed
+    }
+  };
+
   return (
-    <ScrollView
-      style={{
-        flex: 1,
-        backgroundColor: theme.colors.background,
-        padding: theme.spacing.md,
-      }}
-    >
-      {/* Search */}
-      <TextInput
-        placeholder="Search books, authors..."
-        placeholderTextColor={theme.colors.mutedText}
-        style={{
-          borderWidth: 1,
-          borderColor: theme.colors.border,
-          borderRadius: theme.radius.md,
-          padding: theme.spacing.sm,
-          fontSize: theme.fontSize.md,
-          marginBottom: theme.spacing.lg,
-        }}
-      />
-
-      {/* Sign Up */}
-      <TouchableOpacity
-        style={{
-          backgroundColor: theme.colors.primary,
-          padding: theme.spacing.md,
-          borderRadius: theme.radius.md,
-          marginBottom: theme.spacing.lg,
-        }}
-      >
-        <Text
-          style={{
-            color: "#fff",
-            textAlign: "center",
-            fontSize: theme.fontSize.md,
-            fontWeight: "600",
-          }}
-        >
-          Sign Up
-        </Text>
+    <View style={styles.container}>
+      <TouchableOpacity onPress={toggleDrawer} style={styles.hamburger}>
+        <Text style={styles.hamburgerText}>☰</Text>
       </TouchableOpacity>
-
-      {/* Nav Items */}
-      {NAV_ITEMS.map((item) => (
-        <TouchableOpacity
-          key={item}
-          onPress={() => {
-            navigation.closeDrawer();
-            navigation.navigate(item.replace(" ", ""));
-          }}
-          style={{
-            paddingVertical: theme.spacing.sm,
-          }}
-        >
-          <Text
-            style={{
-              fontSize: theme.fontSize.md,
-              color: theme.colors.text,
-            }}
-          >
-            {item}
-          </Text>
-        </TouchableOpacity>
-      ))}
-    </ScrollView>
+      <Text style={styles.title}>{title}</Text>
+    </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    height: 60,
+    backgroundColor: theme.colors.primary,
+    flexDirection: "row",
+    alignItems: "center",
+    paddingHorizontal: 16,
+  },
+  hamburger: {
+    marginRight: 16,
+  },
+  hamburgerText: {
+    fontSize: 24,
+    color: "#fff",
+  },
+  title: {
+    fontSize: 20,
+    fontWeight: "bold",
+    color: "#fff",
+  },
+});
